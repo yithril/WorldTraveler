@@ -1,7 +1,7 @@
 export class TriviaQuestion{
-    constructor(id, description, image, correctAnswer, choices, answeredCorrectly){
+    constructor(id, hint, image, correctAnswer, choices, answeredCorrectly){
         this.id = id;
-        this.description = description;
+        this.hint = hint;
         this.image = image;
         this.correctAnswer = correctAnswer;
         this.choices = choices;
