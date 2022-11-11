@@ -7,7 +7,7 @@ let hintText = document.getElementById("hintText");
 let triviaImage = document.getElementById("triviaImage");
 let correctQuestionsDiv = document.getElementById("correctQuestions");
 let totalQuestionsDiv = document.getElementById("totalQuestions");
-let answerResultDiv = document.getElementById("answerResultDiv");
+let answerResultSection = document.getElementById("answerResultSection");
 
 //global variables
 let currentQuestionId = 0;
@@ -22,21 +22,37 @@ function SetUpTriviaQuestion(){
     if(HasGameEnded()){
         ShowEndingScreen();
     }
+    ShowCurrentScore();
+    hintText.style.display = "none";
+    multipleChoiceDiv.style.display = "none";
+    hintButton.enabled = true;
+    nextButton.enabled = false;
+
+    let question = GetNextTriviaQuestion();
+
+    currentQuestionId = question.id;
+
+    triviaImage.src = `./images/${question.image}`;
+    hintText.innerText = question.hint;
+    multipleChoiceDiv.style.display = "block";
+    BuildMultipleChoice(question);
+}
+
+function SubmitAnswer(event){
+    event.preventDefault();
+
+    let data = new FormData(form);
+
+    let answer = data.get('answer');
+
+    let isCorrect = CheckQuestionIsCorrect(currentQuestionId, answer);
+
+    //TODO change answerResultDiv based on result.
+    if(isCorrect){
+        //show correct screen
+    }
     else{
-        ShowCurrentScore();
-        hintText.style.display = "none";
-        multipleChoiceDiv.style.display = "none";
-        hintButton.enabled = true;
-        nextButton.enabled = false;
-    
-        let question = GetNextTriviaQuestion();
-    
-        currentQuestionId = question.id;
-    
-        triviaImage.src = `./images/${question.image}`;
-        hintText.innerText = question.hint;
-        multipleChoiceDiv.style.display = "block";
-        BuildMultipleChoice();
+        //show WRONG screen
     }
 }
 
@@ -50,13 +66,17 @@ function ToggleShowHint(){
 }
 
 function BuildMultipleChoice(question){
-    for(let choice in question.choices){
-        let choiceDiv = document.createElement('div');
-        choiceDiv.classList.add('multipleChoice');
-        choiceDiv.innerText = choice;
-        choiceDiv.setAttribute("choiceText", choice);
+    for(let i=0; i<question.choices.length; i++){
+        let choiceLabel = document.createElement('label');
+        let choiceInput = document.createElement('input');
 
-        multipleChoiceDiv.appendChild(choiceDiv);
+        choiceInput.setAttribute("type", "radio");
+        choiceLabel.htmlFor = question.choices[i];
+        choiceInput.value = question.choices[i];
+        choiceLabel.innerText = question.choices[i];
+
+        choiceLabel.appendChild(choiceInput)
+        multipleChoiceDiv.appendChild(choiceLabel);
     }
 }
 
