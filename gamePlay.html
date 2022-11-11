@@ -5,8 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/WorldTraveler/stylesheets/gameplay.css">
 </head>
 <body>
+    <h1>World Traveler</h1>
+    <section class="scoreSection"><span id="correctQuestions"></span>/<span id="totalQuestions"></span></section>
+    <img src="" alt="" id="triviaImage">
+    <section class="choicesSection">
+         <form id="triviaForm" class="triviaForm">
+            <div id="multipleChoice"></div>
+        </form>
+    </section>  
+    <section id="answerResultSection"></section>
+    <section class="hintSection">
+        <p id="hintText"></p>
+    </section>
+    <section class="buttonSection">
+        <button id="hintButton">HINT</button>
+        <button id="nextQuestion" type="submit">NEXT</button>
+    </section>
+
     <script src="./gameEngine.js" type="module"></script>
     <script src="./questionService.js" type="module"></script>
 </body>

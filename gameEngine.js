@@ -8,7 +8,7 @@ let hintText = document.getElementById("hintText");
 let triviaImage = document.getElementById("triviaImage");
 let correctQuestionsDiv = document.getElementById("correctQuestions");
 let totalQuestionsDiv = document.getElementById("totalQuestions");
-let answerResultDiv = document.getElementById("answerResultDiv");
+let answerResultSection = document.getElementById("answerResultSection");
 
 //global variables
 let currentQuestionId = 0;
@@ -34,7 +34,7 @@ function SetUpTriviaQuestion(){
     triviaImage.src = `./images/${question.image}`;
     hintText.innerText = question.hint;
     multipleChoiceDiv.style.display = "block";
-    BuildMultipleChoice();
+    BuildMultipleChoice(question);
 }
 
 function SubmitAnswer(event){
@@ -67,12 +67,18 @@ function ToggleShowHint(){
 }
 
 function BuildMultipleChoice(question){
-    for(let choice in question.choices){
-        let choiceDiv = document.createElement('div');
-        choiceDiv.classList.add('multipleChoice');
-        choiceDiv.innerText = choice;
+    for(let i=0; i<question.choices.length; i++){
 
-        multipleChoiceDiv.appendChild(choiceDiv);
+        let choiceLabel = document.createElement('label');
+        let choiceInput = document.createElement('input');
+
+        choiceInput.setAttribute("type", "radio");
+        choiceLabel.htmlFor = question.choices[i];
+        choiceInput.value = question.choices[i];
+        choiceLabel.innerText = question.choices[i];
+
+        choiceLabel.appendChild(choiceInput)
+        multipleChoiceDiv.appendChild(choiceLabel);
     }
 }
 
