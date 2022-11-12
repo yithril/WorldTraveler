@@ -1,7 +1,6 @@
 import { CheckQuestionIsCorrect, GetNextTriviaQuestion, GetTotalCorrectQuestions, GetTotalQuestions } from "./questionService.js";
 
 let nextButton = document.getElementById("nextQuestion");
-let form = document.getElementById("triviaForm");
 let multipleChoiceDiv = document.getElementById("multipleChoice");
 let hintButton = document.getElementById("hintButton");
 let hintText = document.getElementById("hintText");
@@ -16,11 +15,13 @@ let currentQuestionId = 0;
 //event listeners
 nextButton.addEventListener('click', SetUpTriviaQuestion);
 hintButton.addEventListener('click', ToggleShowHint);
-form.addEventListener('submit', SubmitAnswer);
 
 SetUpTriviaQuestion();
 
 function SetUpTriviaQuestion(){
+    if(HasGameEnded()){
+        ShowEndingScreen();
+    }
     ShowCurrentScore();
     hintText.style.display = "none";
     multipleChoiceDiv.style.display = "none";
@@ -48,13 +49,11 @@ function SubmitAnswer(event){
 
     //TODO change answerResultDiv based on result.
     if(isCorrect){
-
+        //show correct screen
     }
     else{
-
+        //show WRONG screen
     }
-
-    nextButton.enabled = true;
 }
 
 function ToggleShowHint(){
@@ -68,7 +67,6 @@ function ToggleShowHint(){
 
 function BuildMultipleChoice(question){
     for(let i=0; i<question.choices.length; i++){
-
         let choiceLabel = document.createElement('label');
         let choiceInput = document.createElement('input');
 
@@ -85,4 +83,18 @@ function BuildMultipleChoice(question){
 function ShowCurrentScore(){
     totalQuestionsDiv.innerText = GetTotalQuestions();
     correctQuestionsDiv.innerText = GetTotalCorrectQuestions();
+}
+
+function HasGameEnded(){
+    if(GetTotalCorrectQuestions() === GetTotalQuestions()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+//TODO show ending screen if they win or lose
+function ShowEndingScreen(){
+
 }
