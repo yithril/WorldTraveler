@@ -7,7 +7,8 @@ let hintText = document.getElementById("hintText");
 let triviaImage = document.getElementById("triviaImage");
 let correctQuestionsDiv = document.getElementById("correctQuestions");
 let totalQuestionsDiv = document.getElementById("totalQuestions");
-let answerResultSection = document.getElementById("answerResultSection");
+// let answerResultSection = document.getElementById("answerResultSection");
+let triviaForm = document.getElementById("triviaForm");
 
 //global variables
 let currentQuestionId = 0;
@@ -15,6 +16,7 @@ let currentQuestionId = 0;
 //event listeners
 nextButton.addEventListener('click', SetUpTriviaQuestion);
 hintButton.addEventListener('click', ToggleShowHint);
+triviaForm.addEventListener('submit',SubmitAnswer);
 
 SetUpTriviaQuestion();
 
@@ -32,18 +34,18 @@ function SetUpTriviaQuestion(){
 
     currentQuestionId = question.id;
 
-    triviaImage.src = `./images/${question.image}`;
+    // triviaImage.src = `./images/${question.image}`;
+    triviaImage.style = `background-image:url(./images/${question.image})`
     hintText.innerText = question.hint;
-    multipleChoiceDiv.style.display = "block";
+    multipleChoiceDiv.style.display = "flex";
     BuildMultipleChoice(question);
 }
 
-function SubmitAnswer(event){
-    event.preventDefault();
+function SubmitAnswer(){
+    preventDefault();
 
-    let data = new FormData(form);
-
-    let answer = data.get('answer');
+    let data = new FormData(triviaForm);
+    let answer = data.get('userAnswer');
 
     let isCorrect = CheckQuestionIsCorrect(currentQuestionId, answer);
 
@@ -73,9 +75,12 @@ function BuildMultipleChoice(question){
         choiceInput.setAttribute("type", "radio");
         choiceLabel.htmlFor = question.choices[i];
         choiceInput.value = question.choices[i];
+        choiceLabel.classList.add("choiceLabel");
+        choiceInput.name = "userAnswer";
+        choiceInput.classList.add("radioInput");
         choiceLabel.innerText = question.choices[i];
-
-        choiceLabel.appendChild(choiceInput)
+        
+        choiceLabel.prepend(choiceInput);
         multipleChoiceDiv.appendChild(choiceLabel);
     }
 }
