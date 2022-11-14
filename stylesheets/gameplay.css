@@ -5,20 +5,69 @@
 html { 
     width: 100%; 
     min-height: 100%; 
+    background-color: #E3DEBF;
 } 
  
 body { 
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     width: inherit; 
     min-height: inherit; 
     margin: 0; 
     padding: 0; 
+    font-family: 'Fugaz One', cursive;
+    color: #353531;
 } 
+h1 {
+   color: #0090C1;
+}
+button {
+    height: 3em;
+    width: 4em;
+    background-color: #38AECC;
+    font-family: 'Fugaz One', cursive;
+    color: #353531;
+}
+.choiceLabel {
+    height: 50%;
+    width: 50%;
+    display:flex;
+    margin-left: 8%;
+    align-items: center;
+    font-size:small
+}
+.buttonSection {
+    display: flex;
+    justify-content: space-between;
+}
+.radioInput {
+    margin: 0 1em 0 0;
+}
 #multipleChoice{
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
-    background-color:rgb(149, 149, 231);
-    width: 300px;
-    height: 200px;
- 
+    flex-direction: column;
+    /* flex: 1 1 160px; */
+    background-color:#0090C1;
+    width: 100%;
+    height: 10em;  
+    margin-top: 3em;
+    margin-bottom: 3em;
 }
+#triviaImage{
+    width:80%;
+    position:relative;
+    background:url() 50% 50% no-repeat;
+    background-size:cover;
+    background-clip:content-box;
+  }
+  #triviaImage:before{
+      display:block;
+      content:"";
+      padding-top:75%;
+  }
+  #triviaForm {
+    width: 80%;
+  }
