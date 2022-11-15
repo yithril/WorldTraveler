@@ -7,7 +7,7 @@ let hintText = document.getElementById("hintText");
 let triviaImage = document.getElementById("triviaImage");
 let correctQuestionsDiv = document.getElementById("correctQuestions");
 let totalQuestionsDiv = document.getElementById("totalQuestions");
-// let answerResultSection = document.getElementById("answerResultSection");
+let answerResultSection = document.getElementById("answerResultSection");
 let triviaForm = document.getElementById("triviaForm");
 let correctDiv = document.getElementById("correct");
 let wrongDiv = document.getElementById("wrong");
@@ -81,6 +81,7 @@ function BuildMultipleChoice(question){
         choiceInput.setAttribute("type", "radio");
         choiceLabel.htmlFor = question.choices[i];
         choiceInput.value = question.choices[i];
+        choiceInput.id = question.choices[i];
         choiceLabel.classList.add("choiceLabel");
         choiceInput.name = "userAnswer";
         choiceInput.classList.add("radioInput");
