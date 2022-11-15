@@ -9,6 +9,8 @@ let correctQuestionsDiv = document.getElementById("correctQuestions");
 let totalQuestionsDiv = document.getElementById("totalQuestions");
 // let answerResultSection = document.getElementById("answerResultSection");
 let triviaForm = document.getElementById("triviaForm");
+let correctDiv = document.getElementById("correct");
+let wrongDiv = document.getElementById("wrong");
 
 //global variables
 let currentQuestionId = 0;
@@ -52,9 +54,13 @@ function SubmitAnswer(){
     //TODO change answerResultDiv based on result.
     if(isCorrect){
         //show correct screen
+        //still needs work
+        // correctDiv.style.display = "flex";
     }
     else{
         //show WRONG screen
+        //still needs work
+        // wrongDiv.style.display = "flex";
     }
 }
 

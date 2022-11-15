@@ -57,6 +57,7 @@ button {
     margin-bottom: 3em;
 }
 #triviaImage{
+    /* display: none; */
     width:80%;
     position:relative;
     background:url() 50% 50% no-repeat;
@@ -71,3 +72,37 @@ button {
   #triviaForm {
     width: 80%;
   }
+  #correct {
+      /* display: flex; */
+      display: none;
+    width:80%;
+    position:relative;
+    background:url() 50% 50% no-repeat;
+    background-size:cover;
+    background-clip:content-box;
+    font-size:60px;
+    justify-content: center;
+    align-items: center;
+  }
+  #correct:before{
+    display:block;
+    content:"";
+    padding-top:75%;
+}
+  #wrong {
+    /* display: flex; */
+    display: none;
+    width:80%;
+    position:relative;
+    background:url() 50% 50% no-repeat;
+    background-size:cover;
+    background-clip:content-box;
+    font-size:60px;
+    justify-content: center;
+    align-items: center;
+  }
+  #wrong:before{
+    display:block;
+    content:"";
+    padding-top:75%;
+}
