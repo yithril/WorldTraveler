@@ -6,6 +6,9 @@ html {
     width: 100%; 
     min-height: 100%; 
     background-color: #E3DEBF;
+    background-image: url("/WorldTraveler/images/map2.png");
+    background-size:cover;
+    background-clip:content-box;
 } 
  
 body { 
@@ -28,6 +31,9 @@ button {
     background-color: #38AECC;
     font-family: 'Fugaz One', cursive;
     color: #353531;
+}
+.scoreSection {
+    margin-bottom: 1em;
 }
 .choiceLabel {
     height: 50%;

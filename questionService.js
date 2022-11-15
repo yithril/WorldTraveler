@@ -25,6 +25,7 @@ export function GetNextTriviaQuestion(){
 }
 
 export function CheckQuestionIsCorrect(id, answer){
+    preventDefault();
     let question = triviaQuestions.find((x) => x.id === id);
 
     //mark they've seen the question
